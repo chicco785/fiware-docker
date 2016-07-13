@@ -1,0 +1,17 @@
+mongodb:
+    image: mongo:2.6
+    hostname: mongodb
+    container_name: mongodb
+    command: --smallfiles
+
+orion:
+    image: fiware/orion:develop
+    hostname: orion
+    container_name: orion
+    links:
+        - mongodb
+    expose:
+        - "1026"
+    ports:
+        - "1026:1026"
+    command: -dbhost mongodb
